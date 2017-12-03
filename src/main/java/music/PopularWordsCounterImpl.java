@@ -28,7 +28,7 @@ public class PopularWordsCounterImpl implements PopularWordsCounter, Serializabl
 
 
         return lines.map(String::toLowerCase)
-                .flatMap(WordsUtil::getWords)
+                //.flatMap(WordsUtil::getWords)
                 .filter(word -> !this.broadcast.value().garbage.contains(word))
                 .mapToPair(word -> new Tuple2<>(word, 1))
                 .reduceByKey(Integer::sum)

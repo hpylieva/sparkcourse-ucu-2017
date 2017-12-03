@@ -25,7 +25,7 @@ public class Main {
         SQLContext sqlContext = new SQLContext(sc);
 
 
-        DataFrame dataFrame = sqlContext.read().json("data/linkedIn/profiles.*");
+        Dataset dataFrame = sqlContext.read().json("data/linkedIn/profiles.*");
         dataFrame.show();
         dataFrame.printSchema();
 
@@ -39,7 +39,7 @@ public class Main {
                 col(AGE).multiply(10).multiply(size(col(KEYWORDS))));
         dataFrame.show();
 
-        DataFrame keyWordDF = dataFrame.withColumn(KEYWORD, explode(col(KEYWORDS))).select(KEYWORD);
+        Dataset keyWordDF = dataFrame.withColumn(KEYWORD, explode(col(KEYWORDS))).select(KEYWORD);
 
 
         Row row = keyWordDF.groupBy(KEYWORD).agg(count(KEYWORD).as("amount"))

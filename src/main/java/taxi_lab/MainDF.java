@@ -3,7 +3,8 @@ package taxi_lab;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.sql.DataFrame;
+//import org.apache.spark.sql.DataFrame;
+import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.RowFactory;
 import org.apache.spark.sql.SQLContext;
@@ -45,7 +46,7 @@ public class MainDF {
 
         StructType schema = createSchema();
 
-        DataFrame dataFrame = sqlContext.createDataFrame(rowRDD, schema);
+        Dataset dataFrame = sqlContext.createDataFrame(rowRDD, schema);
         dataFrame.show();
 
 

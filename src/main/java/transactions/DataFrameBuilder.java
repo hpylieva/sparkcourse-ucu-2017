@@ -2,7 +2,8 @@ package transactions;
 
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.sql.DataFrame;
+
+import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.RowFactory;
 import org.apache.spark.sql.SQLContext;
@@ -25,7 +26,7 @@ public class DataFrameBuilder {
     private SQLContext sqlContext;
 
 
-    public DataFrame load() {
+    public Dataset load() {
         JavaRDD<String> rdd = sc.textFile("data/transactions.csv");
         JavaRDD<Row> rowJavaRDD = rdd.map(line -> {
             String[] data = line.split(";");
