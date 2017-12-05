@@ -1,4 +1,4 @@
-package football.services.enrichers;
+package football.services;
 
 import org.apache.spark.sql.api.java.UDF1;
 

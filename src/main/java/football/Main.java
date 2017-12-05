@@ -3,6 +3,7 @@ package football;
 import football.configs.MainConfig;
 import football.services.DatasetCreator;
 import football.services.EnrichmentService;
+import football.services.ValidationService;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.sql.Dataset;
@@ -19,9 +20,16 @@ public class Main {
 
         JavaSparkContext sc = context.getBean(JavaSparkContext.class);
         DatasetCreator ds = context.getBean(DatasetCreator.class);
+        ValidationService validationService = context.getBean(ValidationService.class);
         EnrichmentService enrichmentService = context.getBean(EnrichmentService.class);
 
+        System.out.println("Raw file was loaded...");
         ds.createDataset().show();
+
+        System.out.println("Validation finished ...");
+        validationService.validate();
+
+        System.out.println("Enrichment finished ...");
         enrichmentService.enrich();
 
     }

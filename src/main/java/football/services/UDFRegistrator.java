@@ -1,6 +1,5 @@
 package football.services;
 
-import football.services.enrichers.CustomUDF;
 import org.apache.spark.sql.SQLContext;
 import org.apache.spark.sql.types.DataTypes;
 import org.springframework.beans.factory.annotation.Autowired;

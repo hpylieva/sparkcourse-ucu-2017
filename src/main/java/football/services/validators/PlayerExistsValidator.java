@@ -7,6 +7,6 @@ import org.springframework.stereotype.Service;
 public class PlayerExistsValidator implements DataValidator {
     @Override
     public Dataset validate(Dataset dataset) {
-        return null;
+        return dataset;
     }
 }
