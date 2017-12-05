@@ -9,19 +9,20 @@ import java.util.List;
 
 @Service
 public class EnrichmentService {
+
     @Autowired
     private DatasetCreator datasetCreator;
 
     @Autowired
     private List<DataEnricher> dataEnrichers;
 
-    public void doWork(){
+    public void enrich(){
+
         Dataset dataset = datasetCreator.createDataset();
         for (DataEnricher dataEnricher : dataEnrichers) {
-            dataset = dataEnricher.addColumns(dataset);
+            dataset = dataEnricher.addColumn(dataset);
         }
         dataset.show();
-//        dataFrame.save("path", SaveMode.Append);
 
     }
 }

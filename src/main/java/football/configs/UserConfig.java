@@ -2,6 +2,8 @@ package football.configs;
 
 import lombok.Getter;
 import lombok.SneakyThrows;
+import org.apache.commons.collections.BidiMap;
+import org.apache.commons.collections.bidimap.DualHashBidiMap;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -19,13 +21,14 @@ public class UserConfig implements Serializable {
     private Map<String, String> codes;
 
     @Getter
-    private Map<String, List<String>> teams = new HashMap<>();
+    private Map<String,String> teams = new HashMap<>();
 
     @Getter
     private List<String> codesWithOneParticipant = Arrays.asList("6", "10");
 
     @Value("${columnNames}")
     private void setColumnNames(String[] columnNames) {
+        // to get column names from property files
         this.columnNames = Arrays.asList(columnNames);
     }
 
@@ -33,10 +36,16 @@ public class UserConfig implements Serializable {
     public void initialize() {
         this.codes = readProperties("codes.properties");
 
-        readProperties("teams.properties")
-                .forEach((country, players) ->
-                        teams.put(country, Arrays.asList(players.split(","))) //\s*,\s*
-                );
+        Map<String, String> teamsProp = readProperties("teams.properties");
+        for(Object key : teamsProp.keySet()){
+            String[] players =  teamsProp.get(key).split(",");
+            for (String player: players) {
+                teams.put( player,(String) key);
+            }
+        }
+            //    .forEach((country, players) ->
+             //           teams.put(country, Arrays.asList(players.split(","))));
+
     }
 
     @SneakyThrows

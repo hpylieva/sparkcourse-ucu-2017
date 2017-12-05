@@ -2,6 +2,7 @@ package football;
 
 import football.configs.MainConfig;
 import football.services.DatasetCreator;
+import football.services.EnrichmentService;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.sql.Dataset;
@@ -18,8 +19,11 @@ public class Main {
 
         JavaSparkContext sc = context.getBean(JavaSparkContext.class);
         DatasetCreator ds = context.getBean(DatasetCreator.class);
+        EnrichmentService enrichmentService = context.getBean(EnrichmentService.class);
 
         ds.createDataset().show();
+        enrichmentService.enrich();
+
     }
 
 }

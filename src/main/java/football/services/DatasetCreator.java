@@ -2,6 +2,8 @@ package football.services;
 
 
 import football.configs.UserConfig;
+import football.services.enrichers.DataEnricher;
+import football.services.validators.DataValidator;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.sql.Dataset;
@@ -29,12 +31,19 @@ public class DatasetCreator implements Serializable {
     @Autowired
     private UserConfig userConfig;
 
+    @Autowired
+    private List<DataValidator> validators;
+
+    @Autowired
+    private List<DataEnricher> enrichers;
 
     public Dataset createDataset() {
         JavaRDD<String> rdd = sc.textFile("data/football/rawData.txt");
-        rdd = rdd.filter(line->!line.isEmpty());
+        rdd = rdd.filter(line->!line.isEmpty()); // filtering empty rows
+
         JavaRDD<Row> rowRdd = rdd.map(rowsCreator::createRowFromLine);
         List<String> columnNames = userConfig.getColumnNames();
+
         StructField[] fields = new StructField[columnNames.size()];
         for (int i = 0; i < fields.length; i++) {
             fields[i] = DataTypes.createStructField(columnNames.get(i), DataTypes.StringType, true);
