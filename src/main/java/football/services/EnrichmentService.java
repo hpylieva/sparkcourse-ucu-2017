@@ -17,9 +17,8 @@ public class EnrichmentService {
     @Autowired
     private List<DataEnricher> dataEnrichers;
 
-    public void enrich(){
+    public Dataset enrich(Dataset dataset){
 
-        Dataset dataset = datasetCreator.createDataset();
         for (DataEnricher dataEnricher : dataEnrichers) {
             dataset = dataEnricher.addColumn(dataset);
         }
@@ -30,5 +29,6 @@ public class EnrichmentService {
                 .format("com.databricks.spark.csv")
                 .option("header", "true")
                 .save("data/football/results/enrichment_result.txt");*/
+        return dataset;
     }
 }

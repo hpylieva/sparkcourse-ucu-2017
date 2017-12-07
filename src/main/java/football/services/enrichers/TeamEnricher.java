@@ -19,15 +19,15 @@ public class TeamEnricher implements DataEnricher, CustomUDF {
     @Override
     public Dataset addColumn(Dataset dataset) {
         dataset =  dataset.withColumn("teamFrom",
-                callUDF(UDFname(),col("from")));//find country where the TO player from (if player not null)
+                callUDF(UdfName(),col("from")));//find country where the TO player from (if player not null)
         dataset =  dataset.withColumn("teamTo",
-                callUDF(UDFname(),col("to")));//find country where the TO player from (if player not null)
+                callUDF(UdfName(),col("to")));//find country where the TO player from (if player not null)
 
         return dataset;
     }
 
     @Override
-    public String UDFname() {
+    public String UdfName() {
         return "findTeam";
     }
 

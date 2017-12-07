@@ -18,11 +18,11 @@ public class eventDescriptionEnricher implements DataEnricher, CustomUDF {
     @Override
     public Dataset addColumn(Dataset dataset) {
         return dataset.withColumn("eventDescription",
-                callUDF(UDFname(),col("code")));
+                callUDF(UdfName(),col("code")));
     }
 
     @Override
-    public String UDFname() {
+    public String UdfName() {
         return "findEventDescription";
     }
 

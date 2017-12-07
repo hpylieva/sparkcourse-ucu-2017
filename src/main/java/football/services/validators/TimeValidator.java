@@ -16,11 +16,11 @@ public class TimeValidator implements DataValidator, CustomUDF {
 
     @Override
     public Dataset validate(Dataset dataset) {
-        return dataset.withColumn("timeIsInvalid", callUDF(UDFname(),col("eventTime")));
+        return dataset.withColumn("timeIsInvalid", callUDF(UdfName(),col("eventTime")));
     }
 
     @Override
-    public String UDFname() {
+    public String UdfName() {
         return "validateTime";
     }
 
@@ -31,6 +31,6 @@ public class TimeValidator implements DataValidator, CustomUDF {
     public String call(String time) {
         int[] parsedTime  = Arrays.stream(time.split(":"))
                 .map(String::trim).mapToInt(Integer::parseInt).toArray();
-        return (parsedTime[1] >60 || parsedTime[0]>120 ) ? "1":"0";
+        return (parsedTime[1] >60 || parsedTime[0]>120 ) ? "2":"";
     }
 }

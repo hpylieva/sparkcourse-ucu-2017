@@ -12,10 +12,10 @@ import static org.apache.spark.sql.functions.col;
 public class GamePartEnricher implements DataEnricher, CustomUDF {
     @Override
     public Dataset addColumn(Dataset dataset) {
-        return dataset.withColumn("gamePart", callUDF(UDFname(),col("eventTime")));
+        return dataset.withColumn("gamePart", callUDF(UdfName(),col("eventTime")));
     }
 
-    public String UDFname() { return "defineGamePart"; }
+    public String UdfName() { return "defineGamePart"; }
 
     // Let's suppose that everything that was after 45th minute of the game happened in the second part
     // as we don't have any information about additional time given in each part of the game.

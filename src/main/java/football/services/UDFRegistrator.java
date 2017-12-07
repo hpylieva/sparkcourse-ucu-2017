@@ -20,7 +20,7 @@ public class UDFRegistrator {
     @PostConstruct
     public void registerCustomUDFs() {
         for (CustomUDF udf : customUDFs) {
-            sqlContext.udf().register(udf.UDFname(), udf, DataTypes.StringType);
+            sqlContext.udf().register(udf.UdfName(), udf, DataTypes.StringType);
         }
     }
 }

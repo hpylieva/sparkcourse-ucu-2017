@@ -24,13 +24,14 @@ public class Main {
         EnrichmentService enrichmentService = context.getBean(EnrichmentService.class);
 
         System.out.println("Raw file was loaded...");
-        ds.createDataset().show();
+        Dataset dataset = ds.createDataset();
+        dataset.show();
 
         System.out.println("Validation finished ...");
-        validationService.validate();
+        dataset = validationService.validate(dataset);
 
         System.out.println("Enrichment finished ...");
-        enrichmentService.enrich();
+        dataset = enrichmentService.enrich(dataset);
 
     }
 
