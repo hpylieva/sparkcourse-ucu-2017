@@ -1,6 +1,6 @@
 package football.services.validators;
 
-import football.services.CustomUDF;
+import football.services.CustomUDF1;
 import lombok.SneakyThrows;
 import org.apache.spark.sql.Dataset;
 import org.springframework.stereotype.Service;
@@ -12,7 +12,7 @@ import static org.apache.spark.sql.functions.callUDF;
 
 
 @Service
-public class TimeValidator implements DataValidator, CustomUDF {
+public class TimeValidator implements DataValidator, CustomUDF1 {
 
     @Override
     public Dataset validate(Dataset dataset) {

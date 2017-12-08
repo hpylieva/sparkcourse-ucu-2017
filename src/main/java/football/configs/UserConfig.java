@@ -2,13 +2,10 @@ package football.configs;
 
 import lombok.Getter;
 import lombok.SneakyThrows;
-import org.apache.commons.collections.BidiMap;
-import org.apache.commons.collections.bidimap.DualHashBidiMap;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import java.io.InputStream;
 import java.io.Serializable;
 import java.util.*;
 
@@ -24,7 +21,7 @@ public class UserConfig implements Serializable {
     private Map<String,String> teams = new HashMap<>();
 
     @Getter
-    private List<String> codesWithOneParticipant = Arrays.asList("6", "10");
+    private List<String> singlePlayerCodes = Arrays.asList("6", "10");
 
     @Value("${columnNames}")
     private void setColumnNames(String[] columnNames) {

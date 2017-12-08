@@ -1,7 +1,7 @@
 package football.services.enrichers;
 
 import football.configs.UserConfig;
-import football.services.CustomUDF;
+import football.services.CustomUDF1;
 import lombok.SneakyThrows;
 import org.apache.spark.sql.Dataset;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,19 +11,15 @@ import static org.apache.spark.sql.functions.callUDF;
 import static org.apache.spark.sql.functions.col;
 
 @Service
-public class TeamEnricher implements DataEnricher, CustomUDF {
+public class TeamEnricher implements DataEnricher, CustomUDF1 {
 
     @Autowired
     private UserConfig userConfig;
 
     @Override
     public Dataset addColumn(Dataset dataset) {
-        dataset =  dataset.withColumn("teamFrom",
-                callUDF(UdfName(),col("from")));//find country where the TO player from (if player not null)
-        dataset =  dataset.withColumn("teamTo",
-                callUDF(UdfName(),col("to")));//find country where the TO player from (if player not null)
-
-        return dataset;
+        return dataset.withColumn("teamFrom", callUDF(UdfName(),col("from")))//find country where the TO player from (if player not null)
+                      .withColumn("teamTo", callUDF(UdfName(),col("to")));//find country where the TO player from (if player not null)
     }
 
     @Override

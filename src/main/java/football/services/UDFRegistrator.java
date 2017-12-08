@@ -12,14 +12,20 @@ import java.util.List;
 public class UDFRegistrator {
 
     @Autowired
-    private List<CustomUDF> customUDFs;
+    private List<CustomUDF1> customUDF1s;
+
+    @Autowired
+    private List<CustomUDF3> customUDF3s;
 
     @Autowired
     private SQLContext sqlContext;
 
     @PostConstruct
     public void registerCustomUDFs() {
-        for (CustomUDF udf : customUDFs) {
+        for (CustomUDF1 udf : customUDF1s) {
+            sqlContext.udf().register(udf.UdfName(), udf, DataTypes.StringType);
+        }
+        for (CustomUDF3 udf : customUDF3s) {
             sqlContext.udf().register(udf.UdfName(), udf, DataTypes.StringType);
         }
     }

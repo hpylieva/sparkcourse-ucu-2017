@@ -1,6 +1,6 @@
 package football.services.enrichers;
 
-import football.services.CustomUDF;
+import football.services.CustomUDF1;
 import lombok.SneakyThrows;
 import org.apache.spark.sql.Dataset;
 import org.springframework.stereotype.Service;
@@ -9,7 +9,7 @@ import static org.apache.spark.sql.functions.callUDF;
 import static org.apache.spark.sql.functions.col;
 
 @Service
-public class GamePartEnricher implements DataEnricher, CustomUDF {
+public class GamePartEnricher implements DataEnricher, CustomUDF1 {
     @Override
     public Dataset addColumn(Dataset dataset) {
         return dataset.withColumn("gamePart", callUDF(UdfName(),col("eventTime")));

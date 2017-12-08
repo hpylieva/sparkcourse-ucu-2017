@@ -1,7 +1,7 @@
 package football.services.enrichers;
 
 import football.configs.UserConfig;
-import football.services.CustomUDF;
+import football.services.CustomUDF1;
 import lombok.SneakyThrows;
 import org.apache.spark.sql.Dataset;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,7 @@ import static org.apache.spark.sql.functions.callUDF;
 import static org.apache.spark.sql.functions.col;
 
 @Service
-public class eventDescriptionEnricher implements DataEnricher, CustomUDF {
+public class eventDescriptionEnricher implements DataEnricher, CustomUDF1 {
     @Autowired
     private UserConfig userConfig;
 
