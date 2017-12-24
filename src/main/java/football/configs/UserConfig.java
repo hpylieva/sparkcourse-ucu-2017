@@ -42,8 +42,6 @@ public class UserConfig implements Serializable {
                 teams.put( player,(String) key);
             }
         }
-            //    .forEach((country, players) ->
-             //           teams.put(country, Arrays.asList(players.split(","))));
 
     }
 

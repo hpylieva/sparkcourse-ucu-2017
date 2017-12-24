@@ -40,6 +40,6 @@ public class RecordCodeValidator implements DataValidator,CustomUDF3 {
                         && !player2.isEmpty()
                         && userConfig.getSinglePlayerCodes().contains(code);
 
-        return checkFail?"3":"";
+        return checkFail?"1":"";
     }
 }

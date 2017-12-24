@@ -31,6 +31,6 @@ public class TimeValidator implements DataValidator, CustomUDF1 {
     public String call(String time) {
         int[] parsedTime  = Arrays.stream(time.split(":"))
                 .map(String::trim).mapToInt(Integer::parseInt).toArray();
-        return (parsedTime[1] >60 || parsedTime[0]>120 ) ? "2":"";
+        return (parsedTime[1] >60 || parsedTime[0]>120 ) ? "1":"";
     }
 }

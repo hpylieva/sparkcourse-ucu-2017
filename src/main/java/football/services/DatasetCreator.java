@@ -1,6 +1,7 @@
 package football.services;
 
 
+import football.aspects.ShowDataSetInTheEnd;
 import football.configs.UserConfig;
 import football.services.enrichers.DataEnricher;
 import football.services.validators.DataValidator;
@@ -37,6 +38,7 @@ public class DatasetCreator implements Serializable {
     @Autowired
     private List<DataEnricher> enrichers;
 
+    @ShowDataSetInTheEnd
     public Dataset createDataset() {
         JavaRDD<String> rdd = sc.textFile("data/football/rawData.txt");
         rdd = rdd.filter(line->!line.isEmpty()); // filtering empty rows
