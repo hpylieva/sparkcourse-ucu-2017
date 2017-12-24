@@ -7,13 +7,13 @@ import football.services.ValidationService;
 import org.apache.spark.sql.Dataset;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import static football.configs.spark_configs.ConstProfiles.PROD;
+import static football.configs.spark_configs.ConstProfiles.DEV;
 
 public class Main {
 
     public static void main(String[] args) {
        // System.setProperty("hadoop.home.dir", "C:\\util\\hadoop-common-2.2.0-bin-master\\");
-        System.setProperty("spring.profiles.active", PROD);
+        System.setProperty("spring.profiles.active", DEV);
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(MainConfig.class);
 
         //JavaSparkContext sc = context.getBean(JavaSparkContext.class);
@@ -29,6 +29,9 @@ public class Main {
 
         dataset = enrichmentService.enrich(dataset);
         System.out.println("Enrichment successfully finished.");
+
+        System.out.println("\n=============================Final dataset=============================\n");
+        dataset.show();
 
         context.close();
 

@@ -17,8 +17,6 @@ public class ValidationService implements CustomUDF1 {
     @Autowired
     private List<DataValidator> dataValidators;
 
-    private ValidationResultPrinter validationResultPrinter;
-
 /* Probably not the best organization of processing validation results,
     at least I shouldn't have hardcoded the number of validators, but due to limited time
     and educational purpose of this project I stayed with this*/
@@ -36,20 +34,12 @@ public class ValidationService implements CustomUDF1 {
         String[] afterValidationColNames = dataset.schema().fieldNames();
         afterValidationColNames = subarray(afterValidationColNames,initColNames.length,afterValidationColNames.length);
 
-       Dataset dsWithJoinedValidation= dataset.withColumn("joinedValidation",
+       Dataset dsFinal= dataset.withColumn("joinedValidation",
                 concat(col(afterValidationColNames[0]),
                         col(afterValidationColNames[1]),
-                        col(afterValidationColNames[2])) );
-
-
-        validationResultPrinter.showValidationResult(dsWithJoinedValidation, initColNames);
-
-       Dataset dsFinal = dsWithJoinedValidation
-                           .withColumn("validationPassed", callUDF(UdfName(),col("joinedValidation")))
-                           .drop( "joinedValidation")
-                           .drop(afterValidationColNames[0])
-                           .drop(afterValidationColNames[1])
-                           .drop(afterValidationColNames[2]);
+                        col(afterValidationColNames[2])) )
+               .withColumn("validationPassed", callUDF(UdfName(),col("joinedValidation")))
+               .drop( "joinedValidation");
 
         return(dsFinal);
     }

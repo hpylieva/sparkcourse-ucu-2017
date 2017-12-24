@@ -19,7 +19,15 @@ public class showDataSetAspect {
     public void showDataSetInTheEnd(JoinPoint jp, Dataset dataset){
 
         System.out.println("ShowDataSetInTheEnd aspect is working...");
-        dataset.show();
+        printToConsole(jp, dataset);
         System.out.println("ShowDataSetInTheEnd aspect ended printing...");
+    }
+
+    private void printToConsole(JoinPoint jp, Dataset dataset) {
+        String className = jp.getClass().getSimpleName();
+        String methodName = jp.getSignature().getName();
+        System.out.println("\n===========BEGIN============= class:  "+className+"  method:  "+methodName+ "   =============="  );
+        dataset.show();
+        System.out.println("\n===========END============= class:  "+className+"  method:  "+methodName+ "   =============="  );
     }
 }
