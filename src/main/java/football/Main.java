@@ -4,13 +4,9 @@ import football.configs.MainConfig;
 import football.services.DatasetCreator;
 import football.services.EnrichmentService;
 import football.services.ValidationService;
-import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.sql.Dataset;
-import org.apache.spark.sql.SQLContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-import static org.apache.spark.storage.StorageLevel.MEMORY_AND_DISK;
 
 public class Main {
 
@@ -28,7 +24,7 @@ public class Main {
         dataset.show();
 
         System.out.println("Validation finished ...");
-        dataset = validationService.validate(dataset);
+        validationService.validate(dataset);
 
         System.out.println("Enrichment finished ...");
         dataset = enrichmentService.enrich(dataset);

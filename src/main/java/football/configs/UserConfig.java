@@ -20,8 +20,10 @@ public class UserConfig implements Serializable {
     @Getter
     private Map<String,String> teams = new HashMap<>();
 
+    /* I am not a big football expert, sut I considered as actions which involve only one player
+     *  the next: yellow/red card, kick to rod/gate, free kick*/
     @Getter
-    private List<String> singlePlayerCodes = Arrays.asList("6", "10");
+    private List<String> singlePlayerCodes = Arrays.asList("1","2","5","6","10");
 
     @Value("${columnNames}")
     private void setColumnNames(String[] columnNames) {
