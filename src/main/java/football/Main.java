@@ -7,7 +7,7 @@ import football.services.ValidationService;
 import org.apache.spark.sql.Dataset;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import static football.configs.spark_configs.ConstProfiles.DEV;
+import static football.constants.ConstProfiles.DEV;
 
 public class Main {
 

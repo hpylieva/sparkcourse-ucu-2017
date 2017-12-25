@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-import static football.configs.spark_configs.ConstProfiles.PROD;
+import static football.constants.ConstProfiles.PROD;
 
 @Profile(PROD)
 @Configuration

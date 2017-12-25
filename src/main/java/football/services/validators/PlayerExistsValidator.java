@@ -19,8 +19,8 @@ public class PlayerExistsValidator implements DataValidator, CustomUDF1 {
     @Override
     public Dataset validate(Dataset dataset) {
 
-        return dataset.withColumn("playerNotFound", callUDF(UdfName(),col("to")))
-                      .withColumn("playerNotFound", callUDF(UdfName(),col("from")));
+        return dataset.withColumn("playerNotFoundFrom", callUDF(UdfName(),col("from")))
+                        .withColumn("playerNotFoundTo", callUDF(UdfName(),col("to")));
     }
 
     @Override

@@ -37,7 +37,8 @@ public class ValidationService implements CustomUDF1 {
        Dataset dsFinal= dataset.withColumn("joinedValidation",
                 concat(col(afterValidationColNames[0]),
                         col(afterValidationColNames[1]),
-                        col(afterValidationColNames[2])) )
+                        col(afterValidationColNames[2]),
+                        col(afterValidationColNames[3])) )
                .withColumn("validationPassed", callUDF(UdfName(),col("joinedValidation")))
                .drop( "joinedValidation");
 

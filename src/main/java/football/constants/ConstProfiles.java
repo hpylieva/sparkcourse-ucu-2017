@@ -1,4 +1,4 @@
-package football.configs.spark_configs;
+package football.constants;
 
 /**
  * @author Evgeny Borisov

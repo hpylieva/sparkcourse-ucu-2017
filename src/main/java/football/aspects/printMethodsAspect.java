@@ -8,7 +8,7 @@ import org.aspectj.lang.annotation.Before;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
-import static football.configs.spark_configs.ConstProfiles.DEV;
+import static football.constants.ConstProfiles.DEV;
 
 @Component
 @Aspect

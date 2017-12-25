@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 
-import static football.configs.spark_configs.ConstProfiles.DEV;
+import static football.constants.ConstProfiles.DEV;
 import static org.apache.spark.sql.functions.col;
 
 @Profile(DEV)
