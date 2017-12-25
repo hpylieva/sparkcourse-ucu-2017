@@ -2,7 +2,7 @@ package football.services;
 
 import football.aspects.ShowDataSetInTheEnd;
 import football.services.validators.DataValidator;
-import football.services.validators.ValidationResultAccumulator;
+import football.services.validators.validation_utils.ValidationResultAccumulator;
 import org.apache.spark.sql.Dataset;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,7 +29,7 @@ public class ValidationService  {
         }
 
         ValidationResultAccumulator validationResultAccumulator = new ValidationResultAccumulator();
-        dataset= validationResultAccumulator.accumulateVAlidationResults(dataset, initColNames);
+        dataset= validationResultAccumulator.accumulateValidationResults(dataset, initColNames);
 
 
         return dataset;

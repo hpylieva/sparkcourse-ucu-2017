@@ -7,13 +7,13 @@ import football.services.ValidationService;
 import org.apache.spark.sql.Dataset;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import static football.constants.ConstProfiles.PROD;
+import static football.constants.ConstProfiles.DEV;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        System.setProperty("spring.profiles.active", PROD);
+        System.setProperty("spring.profiles.active", DEV);
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(MainConfig.class);
 
         //JavaSparkContext sc = context.getBean(JavaSparkContext.class);
