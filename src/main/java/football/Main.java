@@ -7,13 +7,13 @@ import football.services.ValidationService;
 import org.apache.spark.sql.Dataset;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import static football.constants.ConstProfiles.DEV;
+import static football.constants.ConstProfiles.PROD;
 
 public class Main {
 
     public static void main(String[] args) {
-       // System.setProperty("hadoop.home.dir", "C:\\util\\hadoop-common-2.2.0-bin-master\\");
-        System.setProperty("spring.profiles.active", DEV);
+
+        System.setProperty("spring.profiles.active", PROD);
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(MainConfig.class);
 
         //JavaSparkContext sc = context.getBean(JavaSparkContext.class);

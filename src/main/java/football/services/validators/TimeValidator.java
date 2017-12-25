@@ -24,8 +24,8 @@ public class TimeValidator implements DataValidator, CustomUDF1 {
         return "validateTime";
     }
 
-    // Let's suppose that maximum game duration is 90+15*2=120 mins. If overall time is higher - error.
-    // If there are more than 60 seconds - error.
+    /* Let's suppose that maximum game duration is 90+15*2=120 mins. If overall time is higher - error.
+       If there are more than 60 seconds - error. */
     @SneakyThrows
     @Override
     public String call(String time) {

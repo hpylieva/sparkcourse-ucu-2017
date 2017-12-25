@@ -11,7 +11,7 @@ import static org.apache.spark.sql.functions.callUDF;
 import static org.apache.spark.sql.functions.col;
 
 @Service
-public class PlayerExistsValidator implements DataValidator, CustomUDF1 {
+public class PlayerExistsValidator implements DataValidator, CustomUDF1{
 
     @Autowired
     private UserConfig userConfig;
